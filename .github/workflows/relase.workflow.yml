@@ -17,7 +17,6 @@ jobs:
       - run: flutter build apk
       - uses: actions/upload-artifact@v1
         with:
-          name: release-apk
           path: build/app/outputs/apk/release/app-release.apk
 
   release:
@@ -29,4 +28,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "release-apk/app-release.apk"
+          artifacts: "app-release.apk"
