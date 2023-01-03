@@ -31,23 +31,19 @@ jobs:
           name: release-apk
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: elgohr/Github-Release-Action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_NAME: ${{ github.ref }}
-          TAG_NAME: ${{ github.ref }}
         with:
-          release_name: env.RELEASE_NAME
-          tag_name: env.TAG_NAME
+          title: ${{ github.ref }}
       - name: Upload Release APK
         id: upload_release_asset
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ASSET_NAME:  ${{ github.event.repository.name }}.apk
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: release-apk/app-release.apk
-          asset_name: env.ASSET_NAME
+          asset_name: ${{ github.event.repository.name }}.apk
           asset_content_type: application/zip
 
