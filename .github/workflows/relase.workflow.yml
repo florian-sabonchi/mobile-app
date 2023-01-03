@@ -22,10 +22,10 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
-      permissions:
-        contents: write
-      steps:
-        - uses: actions/checkout@v2
-        - uses: ncipollo/release-action@v1
-          with:
-            artifacts: "app-release.apk"
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "app-release.apk"
